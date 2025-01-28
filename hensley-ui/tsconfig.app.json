@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "declaration": true,
+    "outDir": "./dist",
+    "isolatedModules": true,
+    "strict": true,
+    "baseUrl": "./",
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/lib/*": ["./src/components/*"],
+      "@/*": ["./src/*"]
+    },
+  
+  
+
+  },
+  "include": ["./src"],
+  "exclude": ["./node_modules"]
+}
