@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { cva } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
-import { motion } from 'motion/react'
+import { motion, MotionProps } from 'motion/react'
 import { Slot } from '@radix-ui/react-slot'
 import { ButtonProps } from './Button.type'
 
@@ -45,7 +45,7 @@ const BUTTON_BEHAVIOR_MAP = {
   default: 'button',
 } as const
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps & MotionProps>(
   (
     { className, variant, size, animated = false, asChild = false, ...props },
     ref,
