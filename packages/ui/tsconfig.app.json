@@ -9,16 +9,14 @@
     "outDir": "./dist",
     "isolatedModules": true,
     "strict": true,
-    "baseUrl": "./",
+
     "noEmit": false,
     "resolveJsonModule": true,
+    "baseUrl": "./",
     "paths": {
-      "@/lib/*": ["./src/components/*"],
+      "@components/*": ["./src/components/*"],
       "@/*": ["./src/*"]
-    },
-  
-  
-
+    }
   },
   "include": ["./src"],
   "exclude": ["./node_modules"]

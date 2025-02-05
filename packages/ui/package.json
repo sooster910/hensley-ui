@@ -1,20 +1,23 @@
 {
-  "name": "hensley-ui",
+  "name": "@hensley-ui/ui",
   "private": false,
   "version": "0.0.0",
   "type": "module",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.es.js",
+  "style": "./dist/styles.css",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js"
-    }
+    },
+    "./styles.css": "./dist/styles.css"
   },
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "vite",
-    "build": "pnpm run clean && vite build",
+    "dev": "pnpm run build --watch",
+    "build:css": "tailwindcss -i src/index.css -o ./dist/styles.css --minify",
+    "build": "pnpm run clean  && vite build && pnpm run build:css",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -33,6 +36,7 @@
     "postcss": "^8.5.1",
     "prettier": "3.4.2",
     "rimraf": "^6.0.1",
+    "rollup-plugin-postcss": "^4.0.2",
     "tailwindcss": "3.3.5",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.21.0",
