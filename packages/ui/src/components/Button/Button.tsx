@@ -36,7 +36,7 @@ const buttonVariants = cva(
 )
 // NOTE: YAGNI 적용
 const MOTION_ANIMATION = {
-  whileHover: { scale: 1.0 },
+  whileHover: { scale: 1.1 },
   whileTap: { scale: 0.95 },
 } as const
 

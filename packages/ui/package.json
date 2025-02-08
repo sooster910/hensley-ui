@@ -22,7 +22,8 @@
     "preview": "vite preview",
     "storybook": "concurrently 'pnpm run storybook:css' 'storybook dev -p 6006'",
     "build-storybook": "storybook build",
-    "storybook:css": "tailwindcss -w -i ./src/index.css -o ./src/styles.css"
+    "storybook:css": "tailwindcss -w -i ./src/index.css -o ./src/styles.css",
+    "chromatic": "chromatic --project-token=chpt_fb9eeaa5270bd3b"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
@@ -39,6 +40,7 @@
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "chromatic": "^11.25.2",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.0.0",
