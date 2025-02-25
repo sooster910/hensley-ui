@@ -21,16 +21,12 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card first-letter text-lg">
-        {/* <Button as={motion.div}>count is {count}</Button> */}
+        <Button animated>count is {count}</Button>
         <p className="text-5xl">
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <div>
-        <Button asChild animated={true} variant={"default"}>
-          hey
-        </Button>
-      </div>
+      <div></div>
       <Text as={"h1"} color="yellow">
         This is a text component
       </Text>
