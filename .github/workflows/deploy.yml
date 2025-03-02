@@ -23,11 +23,13 @@ jobs:
         run: |
           npm install -g pnpm
           pnpm install
+      - name: Build packages
+        run: pnpm --filter="./packages/*ui*" build
 
       # - name: Run tests
       #   run: pnpm test
       - name: Build Storybook
-        run: pnpm storybook:build
+        run: pnpm --filter="./packages/ui" storybook:build
 
   # Deploy Storybook to Chromatic
   chromatic:
