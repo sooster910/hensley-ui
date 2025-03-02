@@ -19,11 +19,12 @@
     "build": "pnpm run clean  && vite build && pnpm run build:css",
     "build:css": "tailwindcss -i ./src/index.css -o ./dist/styles.css --minify",
     "lint": "eslint .",
+    "check-types": "tsc --noEmit",
     "preview": "vite preview",
     "storybook": "concurrently 'pnpm run storybook:css' 'storybook dev -p 6006'",
-    "storybook:build": "storybook build",
+    "build-storybook": "storybook build",
     "storybook:css": "tailwindcss -w -i ./src/index.css -o ./src/styles.css",
-    "chromatic": "chromatic --project-token=chpt_fb9eeaa5270bd3b"
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
