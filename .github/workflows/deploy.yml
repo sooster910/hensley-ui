@@ -31,33 +31,6 @@ jobs:
       - name: Run tests
         run: pnpm test
 
-  # Changeset Versioning and Publish to NPM
-  versioning:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.12.0"
-
-      - name: Install dependencies
-        run: |
-          npm install -g pnpm
-          pnpm install
-
-      - name: Generate changelog and version
-        run: pnpm changeset version
-
-      - name: Publish packages to NPM
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        run: pnpm publish --access public
-
   # Deploy Storybook to Chromatic
   chromatic:
     name: Run Chromatic
@@ -70,7 +43,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22.12.0" # 다른 job과 통일
+          node-version: "20" # 다른 job과 통일
 
       - name: Install dependencies
         run: |
