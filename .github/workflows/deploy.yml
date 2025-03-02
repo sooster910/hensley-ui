@@ -29,7 +29,7 @@ jobs:
       # - name: Run tests
       #   run: pnpm test
       - name: Build Storybook
-        run: pnpm --filter="./packages/ui" storybook:build
+        run: pnpm --filter="./packages/ui" build-storybook
 
   # Deploy Storybook to Chromatic
   chromatic:
@@ -52,4 +52,8 @@ jobs:
           pnpm install
 
       - name: Run Chromatic
-        run: pnpm --filter="./packages/ui" exec -- chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --build-script-name=build:storybook
+        uses: chromaui/action@latest
+        with:
+          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN}}
+          workingDir: packages/ui
