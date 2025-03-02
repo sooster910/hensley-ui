@@ -26,11 +26,14 @@ jobs:
 
       # - name: Run tests
       #   run: pnpm test
+      - name: Build Storybook
+        run: pnpm storybook:build
 
   # Deploy Storybook to Chromatic
   chromatic:
     name: Run Chromatic
     runs-on: ubuntu-latest
+    needs: build # build가 성공해야 chromatic 실행됨
 
     steps:
       - name: Checkout code
