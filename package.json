@@ -5,7 +5,9 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "pnpm --parallel -r run dev"
+    "dev": "pnpm --parallel -r run dev",
+    "release": "changeset publish",
+    "version-packages": "changeset version"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.12"
