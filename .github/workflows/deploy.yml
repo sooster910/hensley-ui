@@ -80,6 +80,12 @@ jobs:
             echo "has_changesets=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Debug changesets
+        run: |
+          echo "Changeset files:"
+          ls -la .changeset/ || echo "No .changeset directory"
+          find .changeset -name "*.md" || echo "No markdown files in .changeset"
+
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
