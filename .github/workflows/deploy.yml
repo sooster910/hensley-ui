@@ -74,17 +74,18 @@ jobs:
       - name: Check for changesets
         id: check_changesets
         run: |
-          if [ -n "$(ls -A .changeset/*.md 2>/dev/null)" ]; then
-            echo "has_changesets=true" >> $GITHUB_OUTPUT
+          if [ -d "$GITHUB_WORKSPACE/.changeset" ]; then
+            echo "Changeset directory found at: $GITHUB_WORKSPACE/.changeset"
+            ls -la $GITHUB_WORKSPACE/.changeset/
           else
-            echo "has_changesets=false" >> $GITHUB_OUTPUT
+            echo "Changeset directory not found"
           fi
 
       - name: Debug changesets
+        working-directory: ${{ github.workspace }}
         run: |
-          echo "Changeset files:"
+          echo "Checking for changesets in root directory"
           ls -la .changeset/ || echo "No .changeset directory"
-          find .changeset -name "*.md" || echo "No markdown files in .changeset"
 
       - name: Checkout Repository
         uses: actions/checkout@v4
