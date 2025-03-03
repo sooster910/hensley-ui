@@ -60,9 +60,13 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN}}
           workingDir: packages/ui
           exitZeroOnChanges: true # 변경 사항이 있더라도 실패하지 않음
+
+  # Apply changesets and npm registry
   release:
     name: Release
     runs-on: ubuntu-latest
+    needs: [build, chromatic]
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
