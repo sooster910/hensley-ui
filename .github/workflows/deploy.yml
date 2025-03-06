@@ -74,11 +74,10 @@ jobs:
       - name: Check for changesets
         id: check_changesets
         run: |
-          if [ -d "$GITHUB_WORKSPACE/.changeset" ]; then
-            echo "Changeset directory found at: $GITHUB_WORKSPACE/.changeset"
-            ls -la $GITHUB_WORKSPACE/.changeset/
+          if [ -d ".changeset" ] && [ -n "$(find .changeset -name "*.md" -not -name "README.md" 2>/dev/null)" ]; then
+            echo "has_changesets=true" >> $GITHUB_OUTPUT
           else
-            echo "Changeset directory not found"
+            echo "has_changesets=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Debug changesets
