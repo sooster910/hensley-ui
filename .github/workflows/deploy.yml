@@ -78,21 +78,6 @@ jobs:
     needs: [build, chromatic]
 
     steps:
-      - name: Check for changesets
-        id: check_changesets
-        run: |
-          if [ -d ".changeset" ] && [ -n "$(find .changeset -name "*.md" -not -name "README.md" 2>/dev/null)" ]; then
-            echo "has_changesets=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_changesets=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Debug changesets
-        working-directory: ${{ github.workspace }}
-        run: |
-          echo "Checking for changesets in root directory"
-          ls -la .changeset/ || echo "No .changeset directory"
-
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
@@ -101,7 +86,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: 20
           registry-url: "https://registry.npmjs.org"
 
       - name: Setup pnpm
@@ -116,7 +101,6 @@ jobs:
         run: pnpm --filter="./packages/*" build
 
       - name: Create Release Pull Request or Publish to npm
-        if: steps.check_changesets.outputs.has_changesets == 'true'
         id: changesets
         uses: changesets/action@v1
         with:
