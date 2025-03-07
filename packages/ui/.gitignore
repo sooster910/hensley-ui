@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 .history/
 *storybook.log
+.turbo
+
+#Chromatic
+build-storybook.log
+chromatic.log
+chromatic-build-*.xml
+chromatic-diagnostics.json
