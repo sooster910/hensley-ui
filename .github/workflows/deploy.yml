@@ -19,6 +19,13 @@ jobs:
         with:
           node-version: "20" # 최신 LTS 버전으로 변경
 
+      - name: Check current directory structure
+        run: |
+          echo "Current directory structure:"
+          ls -la packages/ui/src/components/
+          echo "Check for button directory:"
+          ls -la packages/ui/src/components/button || echo "button directory not found"
+
       - name: Install dependencies
         run: |
           npm install -g pnpm
