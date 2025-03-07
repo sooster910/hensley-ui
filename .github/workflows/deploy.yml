@@ -24,7 +24,7 @@ jobs:
           npm install -g pnpm
           pnpm install
       - name: Build packages
-        run: pnpm --filter="./packages/*ui*" build
+        run: pnpm --filter="./packages/ui" build
 
       # - name: Run tests
       #   run: pnpm test
