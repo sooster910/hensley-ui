@@ -13,6 +13,9 @@
     },
     "./styles.css": "./dist/styles.css"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rimraf dist",
     "dev": "pnpm run build --watch",
