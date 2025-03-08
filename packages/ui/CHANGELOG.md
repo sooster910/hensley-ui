@@ -1,5 +1,11 @@
 # @hensley-ui/ui
 
+## 0.2.1
+
+### Patch Changes
+
+- Heading 모듈 참조시 경로수정
+
 ## 0.2.0
 
 ### Minor Changes
