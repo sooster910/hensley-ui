@@ -2,7 +2,7 @@
 
 React component library
 
-- [한국어](README.kr.md)
+- [한국어](README.md)
 - [English](README.en.md)
 
 ## Project Overview
