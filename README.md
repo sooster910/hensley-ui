@@ -4,7 +4,6 @@ React component library
 
 ## Language
 
-- [한국어](README.kr.md)
 - [English](README.en.md)
 
 ## 프로젝트 소개
@@ -37,3 +36,8 @@ import { Button } from 'hensleyui';
 ## 현재 상태 및 개선 계획
 
 현재 타입 추론 개선과 Storybook 정적 배포를 진행 중입니다. 향후 사용자 정의 컴포넌트를 추가하고, 테스트 코드를 작성할 예정입니다.
+
+## Contributing
+
+현재 이 프로젝트는 기여 방법에 대한 구체적인 계획이 없습니다.  
+추후에 기여 방법에 대한 안내를 추가할 예정입니다. 감사합니다.
