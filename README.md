@@ -23,16 +23,6 @@ HensleyUI는 **Radix UI**와 **ShadCN 디자인 시스템**을 기반으로 구�
 npm install @hensleyui/ui-ui
 ```
 
-## 주요 컴포넌트
-
-Button (as prop 지원)
-Box (styled-components + polymorphic)
-사용 예시
-tsx
-Copy
-Edit
-import { Button } from 'hensleyui';
-
 ## 현재 상태 및 개선 계획
 
 현재 타입 추론 개선과 Storybook 정적 배포를 진행 중입니다. 향후 사용자 정의 컴포넌트를 추가하고, 테스트 코드를 작성할 예정입니다.

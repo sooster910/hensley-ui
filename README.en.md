@@ -14,15 +14,6 @@ HensleyUI is a **React UI library** built with **Radix UI** and **ShadCN design 
 - Combine the accessible UI components from **Radix UI** with the consistent and beautiful design styles of the **ShadCN design system** to provide highly customizable components.
 - Provide **polymorphic components** that can be easily transformed into various HTML elements for flexibility.
 
-## Technology Stack
-
-- **React** (17.x)
-- **TypeScript** (4.x)
-- **Radix UI**: Accessible UI components
-- **ShadCN Design System**: Consistent UI/UX design system
-- **Styled-components** or **CSS-in-JS** (for styling the design system)
-- **Storybook**: Component management and documentation
-
 ## Installation and Setup
 
 ```bash
