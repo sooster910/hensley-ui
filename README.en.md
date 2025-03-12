@@ -31,3 +31,12 @@ cd hensleyui
 npm install
 npm start
 ```
+
+## Contributing
+
+Currently, there are no specific guidelines for contributing to this project.  
+Guidelines will be added in the future. Thanks for your interest!
+
+## License
+
+This project is licensed under the MIT License.

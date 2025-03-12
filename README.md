@@ -41,3 +41,7 @@ import { Button } from 'hensleyui';
 
 현재 이 프로젝트는 기여 방법에 대한 구체적인 계획이 없습니다.  
 추후에 기여 방법에 대한 안내를 추가할 예정입니다. 감사합니다.
+
+## License
+
+이 프로젝트는 MIT License를 따릅니다.
