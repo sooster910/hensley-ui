@@ -73,6 +73,8 @@ jobs:
     permissions:
       contents: write # 저장소 콘텐츠에 대한 쓰기 권한 부여
       packages: write # 패키지에 대한 쓰기 권한 (필요한 경우)
+      pull-requests: write # PR 생성 권한
+
     name: Release
     runs-on: ubuntu-latest
     needs: [build, chromatic]
