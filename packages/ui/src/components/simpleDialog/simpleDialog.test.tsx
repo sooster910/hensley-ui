@@ -43,25 +43,47 @@ describe('SimpleDialogProvider', () => {
     expect(screen.getByTestId('custom-cancel')).toBeInTheDocument()
   })
 
-  it('onConfirm , onCancel 콜백은 버튼을 클릭했을 때 올바르게 함수호출이 되어야 한다', async () => {
+  it('confirm을 누르면, Promise가 true로 resolve되어야 함', async () => {
     const onConfirm = vi.fn()
     const onCancel = vi.fn()
 
     render(
       <SimpleDialogProvider>
         <DialogOpener
-          onCancel={onCancel}
-          onConfirm={onConfirm}
           confirmButton="확인"
           cancelButton="취소"
+          description="정말 삭제하시겠습니까?"
+          onConfirm={onConfirm}
+          onCancel={onCancel}
         />
       </SimpleDialogProvider>,
     )
 
     await userEvent.click(screen.getByText('Open Dialog'))
+    await screen.findByText('정말 삭제하시겠습니까?')
 
     await userEvent.click(screen.getByText('확인'))
     expect(onConfirm).toHaveBeenCalled()
+  })
+
+  it('cancel을 누르면, Promise가 false로 resolve되어야 함', async () => {
+    const onConfirm = vi.fn()
+    const onCancel = vi.fn()
+
+    render(
+      <SimpleDialogProvider>
+        <DialogOpener
+          confirmButton="확인"
+          cancelButton="취소"
+          description="정말 삭제하시겠습니까?"
+          onConfirm={onConfirm}
+          onCancel={onCancel}
+        />
+      </SimpleDialogProvider>,
+    )
+
+    await userEvent.click(screen.getByText('Open Dialog'))
+    await screen.findByText('정말 삭제하시겠습니까?')
 
     await userEvent.click(screen.getByText('취소'))
     expect(onCancel).toHaveBeenCalled()
@@ -73,20 +95,26 @@ const DialogOpener = ({
   cancelButton,
   title,
   description,
-  onCancel,
   onConfirm,
+  onCancel,
 }: Partial<SimpleDialogType>) => {
-  const { confirm } = useSimpleDialog()
+  const openModal = useSimpleDialog()
 
-  const open = () => {
-    confirm({
+  const open = async () => {
+    const confirmed = await openModal({
       title,
       description,
       cancelButton,
       confirmButton,
-      onCancel: onCancel || (() => alert('취소됨')),
-      onConfirm: onConfirm || (() => alert('확인됨')),
+      onConfirm,
+      onCancel,
     })
+
+    if (confirmed) {
+      onConfirm?.()
+    } else {
+      onCancel?.()
+    }
   }
 
   return <Button onClick={open}>Open Dialog</Button>

@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "pnpm --parallel -r run dev",
     "release": "changeset publish",
-    "version-packages": "changeset version"
+    "version-packages": "changeset version",
+    "ui:storybook": "pnpm --filter @hensley-ui/ui storybook"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.12"

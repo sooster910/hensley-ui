@@ -5,6 +5,6 @@ export type SimpleDialogType = {
   description: string | ReactNode
   cancelButton: string | ReactNode
   confirmButton: string | ReactNode
-  onConfirm: () => void
-  onCancel: () => void
+  onConfirm?: () => void
+  onCancel?: () => void
 }
