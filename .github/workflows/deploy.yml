@@ -48,8 +48,7 @@ jobs:
   chromatic:
     name: Deploy Storybook
     runs-on: ubuntu-latest
-    needs: validate # chromatic은 main 으로 push 될 때에만 실행하도록함
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate #jobs의 validate가 성공해야 실행되도록 설정
 
     steps:
       - name: Checkout code
