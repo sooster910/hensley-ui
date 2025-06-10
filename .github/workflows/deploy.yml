@@ -1,15 +1,24 @@
-name: Deploy to Chromatic and NPM
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+
+# 전역 권한 설정 추가git
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+  id-token: write
 
 jobs:
-  # Build and Test Job
-  build:
+  validate:
+    name: Validate
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,32 +26,30 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20" # 최신 LTS 버전으로 변경
-
-      - name: Check current directory structure
-        run: |
-          echo "Current directory structure:"
-          ls -la packages/ui/src/components/
-          echo "Check for button directory:"
-          ls -la packages/ui/src/components/button || echo "button directory not found"
+          node-version: "20"
 
       - name: Install dependencies
         run: |
           npm install -g pnpm
           pnpm install
-      - name: Build packages
+
+      - name: Lint
+        run: pnpm --filter="./packages/ui" lint
+
+      - name: Type check
+        run: pnpm --filter="./packages/ui" type-check
+
+      - name: Run tests
+        run: pnpm --filter="./packages/ui" test
+
+      - name: Build ui packages
         run: pnpm --filter="./packages/ui" build
 
-      # - name: Run tests
-      #   run: pnpm test
-      - name: Build Storybook
-        run: pnpm --filter="./packages/ui" build-storybook
-
-  # Deploy Storybook to Chromatic
   chromatic:
-    name: Run Chromatic
+    name: Deploy Storybook
     runs-on: ubuntu-latest
-    needs: build # build가 성공해야 chromatic 실행됨
+    needs: validate # chromatic은 main 으로 push 될 때에만 실행하도록함
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
       - name: Checkout code
@@ -53,7 +60,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20" # 다른 job과 통일
+          node-version: "20"
 
       - name: Install dependencies
         run: |
@@ -63,29 +70,26 @@ jobs:
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN}}
           workingDir: packages/ui
-          exitZeroOnChanges: true # 변경 사항이 있더라도 실패하지 않음
+          exitZeroOnChanges: false # 변경 사항이 있으면 다음동작 실행 x
 
-  # Apply changesets and npm registry
   release:
-    permissions:
-      contents: write # 저장소 콘텐츠에 대한 쓰기 권한 부여
-      packages: write # 패키지에 대한 쓰기 권한 (필요한 경우)
-      pull-requests: write # PR 생성 권한
-      id-token: write # OIDC 토큰 권한 추가
-
     name: Release
     runs-on: ubuntu-latest
-    needs: [build, chromatic]
+    needs: [validate, chromatic]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: write
+      id-token: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }} # GITHUB_TOKEN 명시적 사용
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -100,9 +104,6 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install
-
-      - name: Build Packages
-        run: pnpm --filter="./packages/*" build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

@@ -91,7 +91,7 @@ export const WithCustomClass: Story = {
 
 // 복잡한 자식 요소를 가진 예시
 export const WithComplexChildren: Story = {
-  render: (args) => (
+  render: () => (
     <Heading as="h1">
       Advanced Heading with <span className="text-blue-500">colored</span> text
       and <code className="bg-gray-200 px-1 rounded">code</code>
@@ -105,7 +105,7 @@ export const WithEventHandler: Story = {
     as: 'h1',
   },
 
-  render: (args) => (
+  render: () => (
     <Heading
       as="h3"
       onClick={() => alert('Heading clicked!')}
