@@ -12,8 +12,6 @@
 
 HensleyUI는 **Radix UI**와 **ShadCN 디자인 시스템**을 기반으로 구축된 **React UI 라이브러리**입니다. 이 라이브러리는 **Polymorphic 컴포넌트**를 제공하여 유연한 UI 설계를 지원하며, **ShadCN 디자인 시스템**의 철학을 반영한 **일관성 있는 디자인**을 제공합니다.
 
-버전: 0.2.0 (개발 중)
-
 ### 주요 목표
 
 ---
@@ -51,7 +49,7 @@ export const AllHeadingLevels: Story = {
 };
 ```
 
-## [UPCOMING FEATURE] 비동기 다이얼로그 열기
+## 비동기 다이얼로그 열기
 
 ```tsx
 export const SimpleDialog = () => {
@@ -74,7 +72,6 @@ export const SimpleDialog = () => {
 
 ## Contributing
 
-현재 이 프로젝트는 기여 방법에 대한 구체적인 계획이 없습니다.  
 추후에 기여 방법에 대한 안내를 추가할 예정입니다. 감사합니다.
 
 ## License
