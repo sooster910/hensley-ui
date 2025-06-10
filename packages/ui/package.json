@@ -28,7 +28,8 @@
     "build-storybook": "storybook build",
     "storybook:css": "tailwindcss -w -i ./src/index.css -o ./src/styles.css",
     "chromatic": "chromatic --exit-zero-on-changes",
-    "ci:publish": "pnpm publish -r",
+    "ci:publish": "changeset publish && pnpm tag:latest",
+    "tag:latest": "node scripts/tag-latest.js",
     "test": "vitest"
   },
   "devDependencies": {
