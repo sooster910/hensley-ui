@@ -112,22 +112,16 @@ jobs:
           echo "=== 2. 빌드 결과 확인 ==="
           cd packages/ui
 
-          echo "=== 2.1 디버깅: 원본 출력 ==="
-          echo "$pack_output"
-
-          echo "=== 2.2 디버깅: grep 테스트 ==="
-          echo "$pack_output" | grep "dist/index.d.ts" || echo "grep 실패"
-
           echo "=== 3. npm pack 검증 ==="
           pack_output=$(npm pack --dry-run)
           echo "$pack_output"
 
-          if ! echo "$pack_output" | grep -q "dist/index.d.ts"; then
+          if echo "$pack_output" | grep -q "dist/index.d.ts"; then
+            echo "✅ 빌드 및 검증 완료""
+          else
             echo "❌ dist 파일을 찾을 수 없음!"
             exit 1
           fi
-
-          echo "✅ 빌드 및 검증 완료"
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
