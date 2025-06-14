@@ -116,7 +116,7 @@ jobs:
           pack_output=$(npm pack --dry-run)
           echo "$pack_output"
 
-          if echo "$pack_output" | grep -q "dist/index.d.ts"; then
+          if echo "$pack_output" | grep -q "dist/src/index.d.ts"; then
             echo "✅ 빌드 및 검증 완료"
           else
             echo "❌ dist 파일을 찾을 수 없음!"
