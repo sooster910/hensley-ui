@@ -1,5 +1,11 @@
 # @hensley-ui/ui
 
+## 0.3.3
+
+### Patch Changes
+
+- 543fe36: fix(CI) : job 분리로 인한 빌드 결과물 손실 픽스
+
 ## 0.3.2
 
 ### Patch Changes
