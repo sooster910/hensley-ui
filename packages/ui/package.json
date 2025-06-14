@@ -30,7 +30,7 @@
     "build-storybook": "storybook build",
     "storybook:css": "tailwindcss -w -i ./src/index.css -o ./src/styles.css",
     "chromatic": "chromatic --exit-zero-on-changes",
-    "ci:publish": "pnpm run build && pnpm publish --access public",
+    "ci:publish": "pnpm publish --access public",
     "test": "vitest"
   },
   "devDependencies": {
