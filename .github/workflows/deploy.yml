@@ -127,6 +127,11 @@ jobs:
             exit 1
           fi
 
+          echo "=== 4. 디버깅: 현재 디렉토리 및 package.json 확인 ==="
+          pwd
+          ls -la
+          cat package.json | grep -A 10 "scripts"
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
