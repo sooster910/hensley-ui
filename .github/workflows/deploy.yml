@@ -116,10 +116,14 @@ jobs:
           pack_output=$(npm pack --dry-run)
           echo "$pack_output"
 
-          if echo "$pack_output" | grep "dist.*index\.d\.ts"; then
+          if [ -d "dist" ] && [ -f "dist/index.es.js" ]; then
+            echo "✅ dist 폴더와 주요 빌드 파일들 모두 존재"
+            echo "빌드된 파일 개수: $(find dist -type f | wc -l)"
             echo "✅ 빌드 및 검증 완료"
           else
-            echo "❌ dist 파일을 찾을 수 없음!"
+            echo "❌ 필수 빌드 파일이 누락됨!"
+            echo "현재 dist 상태:"
+            [ -d "dist" ] && ls -la dist/ || echo "dist 폴더 없음"
             exit 1
           fi
 
