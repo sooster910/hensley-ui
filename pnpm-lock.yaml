@@ -166,8 +166,8 @@ importers:
   playground:
     dependencies:
       '@hensley-ui/ui':
-        specifier: ^0.1.0
-        version: 0.1.0(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@19.0.0)(react@19.0.0)(tailwindcss@4.0.3)
+        specifier: workspace:^
+        version: link:../packages/ui
       '@tailwindcss/vite':
         specifier: ^4.0.3
         version: 4.0.8(vite@6.1.0)
@@ -968,29 +968,6 @@ packages:
 
   /@floating-ui/utils@0.2.9:
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
-
-  /@hensley-ui/ui@0.1.0(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@19.0.0)(react@19.0.0)(tailwindcss@4.0.3):
-    resolution: {integrity: sha512-USxkzo7ZfpgqboDqG/7ChWwe3vxaBSza4WUILN31Yr3f56tT/iYAkPG0B7xvmvZGtjKfvYm7TvY5ysXm9wG4bQ==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      '@radix-ui/react-dropdown-menu': 2.1.6(@types/react-dom@18.3.5)(@types/react@18.3.18)(react-dom@19.0.0)(react@19.0.0)
-      '@radix-ui/react-slot': 1.1.2(@types/react@18.3.18)(react@19.0.0)
-      class-variance-authority: 0.7.1
-      clsx: 2.1.1
-      lucide-react: 0.474.0(react@19.0.0)
-      motion: 12.4.3(react-dom@19.0.0)(react@19.0.0)
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      tailwind-merge: 2.6.0
-      tailwindcss-animate: 1.0.7(tailwindcss@4.0.3)
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - '@types/react'
-      - '@types/react-dom'
-      - tailwindcss
-    dev: false
 
   /@humanfs/core@0.19.1:
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -7612,14 +7589,6 @@ packages:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
       tailwindcss: 3.3.5
-    dev: false
-
-  /tailwindcss-animate@1.0.7(tailwindcss@4.0.3):
-    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
-    peerDependencies:
-      tailwindcss: '>=3.0.0 || insiders'
-    dependencies:
-      tailwindcss: 4.0.3
     dev: false
 
   /tailwindcss@3.3.5:
