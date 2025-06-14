@@ -104,13 +104,34 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Pre-publish validation
+        run: |
+          echo "=== 1. 빌드 실행 ==="
+          pnpm --filter="./packages/ui" build  # ← 항상 빌드!
+
+          echo "=== 2. 빌드 결과 확인 ==="
+          cd packages/ui
+
+          if [ ! -d "dist" ]; then
+            echo "❌ 빌드 후에도 dist 폴더가 없습니다!"
+            exit 1
+          fi
+
+          echo "=== 3. npm pack 검증 ==="
+          if ! npm pack --dry-run | grep -q "dist/"; then
+            echo "❌ dist 파일들이 배포에서 제외됨!"
+            exit 1
+          fi
+
+          echo "✅ 빌드 및 검증 완료"
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release
           commit: "chore: version packages"
           title: "chore: version packages"
+          publish: pnpm ci:publish
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
