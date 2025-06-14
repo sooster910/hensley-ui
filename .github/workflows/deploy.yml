@@ -112,14 +112,12 @@ jobs:
           echo "=== 2. 빌드 결과 확인 ==="
           cd packages/ui
 
-          if [ ! -d "dist" ]; then
-            echo "❌ 빌드 후에도 dist 폴더가 없습니다!"
-            exit 1
-          fi
-
           echo "=== 3. npm pack 검증 ==="
-          if ! npm pack --dry-run | grep -q "dist/"; then
-            echo "❌ dist 파일들이 배포에서 제외됨!"
+          pack_output=$(npm pack --dry-run)
+          echo "$pack_output"
+
+          if ! echo "$pack_output" | grep -q "dist/"; then
+            echo "❌ dist 파일을 찾을 수 없음!"
             exit 1
           fi
 
