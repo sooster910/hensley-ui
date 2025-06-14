@@ -130,7 +130,7 @@ jobs:
           echo "=== 4. 디버깅: 현재 디렉토리 및 package.json 확인 ==="
           pwd
           ls -la
-          cat package.json | grep -A 10 "scripts"
+          cat package.json | grep -A 50 "scripts"
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
