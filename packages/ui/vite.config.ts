@@ -10,7 +10,7 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       logLevel: 'info', // 로깅 활성화
-      tsconfigPath: './tsconfig.app.json', // tsconfig.json 파일 경로
+      tsconfigPath: './tsconfig.json', // tsconfig.json 파일 경로
     }),
   ],
 
@@ -18,8 +18,14 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
+      '@hensley-ui/utils': path.resolve(__dirname, './utils/src/index.ts'),
+      '@hensley-ui/react-button': path.resolve(
+        __dirname,
+        './react-button/src/index.ts',
+      ),
     },
   },
+
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

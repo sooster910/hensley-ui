@@ -1,15 +1,22 @@
 {
-  "files": [],
+  "include": ["src", "utils", "react-button"],
+
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@components/*": ["./src/components/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@hensley-ui/utils": ["./utils/src/index.ts"],
+      "@hensley-ui/utils/*": ["./utils/src/*"],
+      "@hensley-ui/react-button": ["./react-button/src/index.ts"],
+      "@hensley-ui/react-button/*": ["./react-button/src/*"]
     },
+
     "types": ["vitest/globals", "@testing-library/jest-dom"]
   }
 }
