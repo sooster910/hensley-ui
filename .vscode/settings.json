@@ -9,5 +9,7 @@
   "editor.formatOnSave": true,
   "files.exclude": {
     "**/.history": true
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
