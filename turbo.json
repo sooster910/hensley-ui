@@ -1,0 +1,56 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": ["coverage/**"]
+    },
+    "type-check": {
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "clean": {
+      "cache": false
+    },
+    "publish": {
+      "dependsOn": ["build", "test"],
+      "cache": false
+    },
+    "@hensley-ui/react-button#build": {
+      "dependsOn": ["@hensley-ui/utils#build"]
+    },
+    "@hensley-ui/react-button#type-check": {
+      "dependsOn": ["@hensley-ui/utils#type-check"]
+    },
+    "@hensley-ui/react-button#lint": {
+      "dependsOn": ["@hensley-ui/utils#lint"]
+    },
+    "@hensley-ui/react-button#test": {
+      "dependsOn": ["@hensley-ui/utils#test", "@hensley-ui/react-button#build"]
+    },
+    "@hensley-ui/react-dialog#build": {
+      "dependsOn": ["@hensley-ui/utils#build", "@hensley-ui/react-button#build"]
+    },
+    "@hensley-ui/react-heading#build": {
+      "dependsOn": ["@hensley-ui/utils#build", "@hensley-ui/react-button#build"]
+    },
+    "@hensley-ui/ui#build": {
+      "dependsOn": [
+        "@hensley-ui/utils#build",
+        "@hensley-ui/react-button#build",
+        "@hensley-ui/react-dialog#build",
+        "@hensley-ui/react-heading#build"
+      ]
+    }
+  }
+}
