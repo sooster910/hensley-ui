@@ -88,3 +88,11 @@ export const AsChild: Story = {
     children: <a href="#">As Link</a>,
   },
 }
+
+export const FullWidth: Story = {
+  args: {
+    fullWidth: true,
+    children: 'Full Width',
+  },
+  render: (args) => <Button {...args} />,
+}

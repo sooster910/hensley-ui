@@ -1,0 +1,14 @@
+{
+  "extends": "../../../packages/typescript-config/react-library.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@hensley-ui/utils": ["../utils/src/index.ts"],
+      "@hensley-ui/utils/*": ["../utils/src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
