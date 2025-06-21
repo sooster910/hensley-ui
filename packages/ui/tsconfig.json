@@ -1,5 +1,6 @@
 {
-  "include": ["src", "utils", "react-button"],
+  "include": ["src", "utils", "react-button", "base-ui", "lib"],
+  "exclude": ["dist", "node_modules"],
 
   "references": [
     { "path": "./tsconfig.app.json" },
@@ -14,7 +15,8 @@
       "@hensley-ui/utils": ["./utils/src/index.ts"],
       "@hensley-ui/utils/*": ["./utils/src/*"],
       "@hensley-ui/react-button": ["./react-button/src/index.ts"],
-      "@hensley-ui/react-button/*": ["./react-button/src/*"]
+      "@hensley-ui/react-button/*": ["./react-button/src/*"],
+      "@hensley-ui/base-ui/*": ["./base-ui/src/*"]
     },
 
     "types": ["vitest/globals", "@testing-library/jest-dom"]
