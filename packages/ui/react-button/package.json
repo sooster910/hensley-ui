@@ -25,7 +25,8 @@
     "clean": "rimraf .turbo node_modules dist",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@hensley-ui/utils": "workspace:*",

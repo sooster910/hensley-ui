@@ -2,7 +2,7 @@ import * as React from 'react'
 import { cn } from '../../lib/utils'
 import {
   Button as BaseButton,
-  ButtonProps as BaseButtonProps,
+  type ButtonProps as BaseButtonProps,
   buttonVariants,
 } from '../../base-ui/ui/button'
 export interface ButtonProps extends BaseButtonProps {
