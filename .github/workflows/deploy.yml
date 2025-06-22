@@ -42,7 +42,7 @@ jobs:
       - name: Run tests
         run: pnpm test
 
-      - name: Build ui packages
+      - name: Build packages
         run: pnpm build
 
   chromatic:
@@ -103,34 +103,6 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install
-
-      # - name: Pre-publish validation
-      #   run: |
-      #     echo "=== 1. 빌드 실행 ==="
-      #     pnpm --filter="./packages/ui" build  # ← 항상 빌드!
-
-      #     echo "=== 2. 빌드 결과 확인 ==="
-      #     cd packages/ui
-
-      #     echo "=== 3. npm pack 검증 ==="
-      #     pack_output=$(npm pack --dry-run)
-      #     echo "$pack_output"
-
-      #     if [ -d "dist" ] && [ -f "dist/index.es.js" ]; then
-      #       echo "✅ dist 폴더와 주요 빌드 파일들 모두 존재"
-      #       echo "빌드된 파일 개수: $(find dist -type f | wc -l)"
-      #       echo "✅ 빌드 및 검증 완료"
-      #     else
-      #       echo "❌ 필수 빌드 파일이 누락됨!"
-      #       echo "현재 dist 상태:"
-      #       [ -d "dist" ] && ls -la dist/ || echo "dist 폴더 없음"
-      #       exit 1
-      #     fi
-
-      #     echo "=== 4. 디버깅: 현재 디렉토리 및 package.json 확인 ==="
-      #     pwd
-      #     ls -la
-      #     cat package.json | grep -A 50 "scripts"
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

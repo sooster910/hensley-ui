@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "tasks": {
+  "pipeline": {
     "build": {
       "dependsOn": ["^build", "type-check", "lint"],
       "outputs": ["dist/**"]
@@ -26,21 +26,6 @@
     "publish": {
       "dependsOn": ["build", "test"],
       "cache": false
-    },
-    "@hensley-ui/react-button#build": {
-      "dependsOn": []
-    },
-    "@hensley-ui/react-button#type-check": {
-      "dependsOn": []
-    },
-    "@hensley-ui/react-button#lint": {
-      "dependsOn": []
-    },
-    "@hensley-ui/react-button#test": {
-      "dependsOn": ["@hensley-ui/react-button#build"]
-    },
-    "@hensley-ui/ui#build": {
-      "dependsOn": []
     }
   }
 }
