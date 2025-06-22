@@ -2,7 +2,8 @@
   "private": true,
   "packageManager": "pnpm@8.15.4",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/ui/*"
   ],
   "scripts": {
     "dev": "pnpm --parallel -r run dev",
