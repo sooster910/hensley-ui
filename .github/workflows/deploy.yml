@@ -34,16 +34,16 @@ jobs:
           pnpm install
 
       - name: Lint
-        run: pnpm --filter="./packages/ui" lint
+        run: pnpm lint
 
       - name: Type check
-        run: pnpm --filter="./packages/ui" type-check
+        run: pnpm type-check
 
       - name: Run tests
-        run: pnpm --filter="./packages/ui" test
+        run: pnpm test
 
       - name: Build ui packages
-        run: pnpm --filter="./packages/ui" build
+        run: pnpm build
 
   chromatic:
     name: Deploy Storybook
