@@ -27,30 +27,19 @@
       "cache": false
     },
     "@hensley-ui/react-button#build": {
-      "dependsOn": ["@hensley-ui/utils#build"]
+      "dependsOn": []
     },
     "@hensley-ui/react-button#type-check": {
-      "dependsOn": ["@hensley-ui/utils#type-check"]
+      "dependsOn": []
     },
     "@hensley-ui/react-button#lint": {
-      "dependsOn": ["@hensley-ui/utils#lint"]
+      "dependsOn": []
     },
     "@hensley-ui/react-button#test": {
-      "dependsOn": ["@hensley-ui/utils#test", "@hensley-ui/react-button#build"]
-    },
-    "@hensley-ui/react-dialog#build": {
-      "dependsOn": ["@hensley-ui/utils#build", "@hensley-ui/react-button#build"]
-    },
-    "@hensley-ui/react-heading#build": {
-      "dependsOn": ["@hensley-ui/utils#build", "@hensley-ui/react-button#build"]
+      "dependsOn": ["@hensley-ui/react-button#build"]
     },
     "@hensley-ui/ui#build": {
-      "dependsOn": [
-        "@hensley-ui/utils#build",
-        "@hensley-ui/react-button#build",
-        "@hensley-ui/react-dialog#build",
-        "@hensley-ui/react-heading#build"
-      ]
+      "dependsOn": []
     }
   }
 }

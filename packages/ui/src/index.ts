@@ -1,5 +1,5 @@
-import { Button, ButtonProps } from '@components/button'
-import { Heading } from '@components/heading/Heading'
+import { Button, ButtonProps } from '@/components/button'
+import { Heading } from '@/components/heading/Heading'
 import {
   AsProp,
   OmitPropsWithoutRef,
@@ -7,7 +7,7 @@ import {
   TextPropsWithRef,
   TextProps,
   TextRef,
-} from '@components/heading/Heading.types'
+} from '@/components/heading/Heading.types'
 
 export { Button, Heading }
 export type {

@@ -1,4 +1,4 @@
-import { Button } from '@components/button'
+import { Button } from '@/components/button'
 import { useSimpleDialog } from '../useSimpleDialog'
 import { SimpleDialogType } from '../SimpleDialog.types'
 

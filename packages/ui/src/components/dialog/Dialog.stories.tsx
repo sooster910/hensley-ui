@@ -7,8 +7,8 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from '@components/ui/dialog'
-import { Button } from '@components/button'
+} from '@/components/ui/dialog'
+import { Button } from '@/components/button'
 
 const meta: Meta<typeof Dialog> = {
   title: 'UI Component/Dialog',
