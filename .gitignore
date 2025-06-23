@@ -24,6 +24,10 @@ dist-ssr
 *.sw?
 .history/
 
+# Storybook
+storybook-static/
+storybook-static-*/
+
 build-storybook.log
 chromatic.log
 chromatic-build-*.xml
