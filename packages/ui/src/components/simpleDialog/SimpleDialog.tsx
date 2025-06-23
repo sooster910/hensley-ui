@@ -1,6 +1,5 @@
 import { isValidElement, PropsWithChildren, useState } from 'react'
-
-import { Button } from '@/components/button'
+import { Button } from '@hensley-ui/react-button'
 
 import { SimpleDialogContext } from './context'
 import {

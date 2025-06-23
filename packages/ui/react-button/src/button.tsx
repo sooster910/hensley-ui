@@ -5,7 +5,7 @@ import {
   type ButtonProps as BaseButtonProps,
   buttonVariants,
 } from '../../base-ui/ui/button'
-export interface ButtonProps extends BaseButtonProps {
+interface ButtonProps extends BaseButtonProps {
   fullWidth?: boolean
   asChild?: boolean
 }
@@ -25,4 +25,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = 'Button'
 
-export { Button, buttonVariants }
+export { Button, buttonVariants, type ButtonProps }

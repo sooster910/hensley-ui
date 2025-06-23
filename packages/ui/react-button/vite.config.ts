@@ -29,5 +29,16 @@ export default defineConfig({
       '@hensley-ui/react-button': resolve(__dirname, './src/index.ts'),
     },
   },
-  plugins: [dts()],
+  plugins: [
+    dts({
+      entryRoot: 'src',
+      outDir: 'dist',
+      exclude: [
+        '**/*.test.*',
+        '**/*.stories.*',
+        '**/*.spec.*',
+        '**/vitest.config.*',
+      ],
+    }),
+  ],
 })
