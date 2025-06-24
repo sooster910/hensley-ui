@@ -43,7 +43,15 @@ jobs:
         run: pnpm test
 
       - name: Build packages
-        run: pnpm build
+        run:
+          pnpm build
+
+          # 🔍 디버깅: 빌드 결과 확인
+      - name: Verify react-button build
+        run: |
+          echo "Checking react-button build output..."
+          ls -la packages/ui/react-button/dist/ || echo "No dist folder found"
+          cat packages/ui/react-button/package.json | grep -E "(main|module|exports)" || echo "No entry points found"
 
   chromatic:
     name: Deploy Storybook
