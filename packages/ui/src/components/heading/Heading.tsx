@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { forwardRef, ForwardedRef } from 'react'
-import { TextPropsWithRef } from './Heading.types'
+import { TextPropsWithRef } from './Heading.types.js'
 
 // shadcn 스타일 매핑
 const headingVariants = {

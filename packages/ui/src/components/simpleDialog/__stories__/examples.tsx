@@ -1,4 +1,4 @@
-import { Button } from '@components/button'
+import { Button } from '@hensley-ui/react-button'
 import { useSimpleDialog } from '../useSimpleDialog'
 import { SimpleDialogType } from '../SimpleDialog.types'
 

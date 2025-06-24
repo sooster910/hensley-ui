@@ -5,7 +5,16 @@ import pluginReact from 'eslint-plugin-react'
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { ignores: ['dist', 'node_modules', 'tailwind.config.js'] },
+  {
+    ignores: [
+      'dist/**/*',
+      'react-button/dist/**/*',
+      'node_modules/**/*',
+      'tailwind.config.js',
+      '.storybook/**/*',
+      'storybook-static/**/*',
+    ],
+  },
   {
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     rules: {},

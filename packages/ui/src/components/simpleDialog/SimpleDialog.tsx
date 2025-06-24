@@ -1,6 +1,5 @@
 import { isValidElement, PropsWithChildren, useState } from 'react'
-
-import { Button } from '@components/button'
+import { Button } from '@hensley-ui/react-button'
 
 import { SimpleDialogContext } from './context'
 import {
@@ -11,7 +10,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from '@components/ui/dialog'
+} from '@/components/ui/dialog'
 import { SimpleDialogType } from './SimpleDialog.types'
 
 export const SimpleDialogProvider = ({

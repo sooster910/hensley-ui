@@ -1,9 +1,7 @@
 import * as React from 'react'
-import { cva } from 'class-variance-authority'
-import { cn } from '@/lib/utils'
-import { motion, MotionProps } from 'motion/react'
 import { Slot } from '@radix-ui/react-slot'
-import { ButtonProps } from '@/components/button/Button.type'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from '../../lib/utils'
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
@@ -15,7 +13,7 @@ const buttonVariants = cva(
         destructive:
           'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
+          'border border-inputbg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
         secondary:
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
@@ -34,32 +32,20 @@ const buttonVariants = cva(
     },
   },
 )
-// NOTE: YAGNI 적용
-const MOTION_ANIMATION = {
-  whileHover: { scale: 1.1 },
-  whileTap: { scale: 0.95 },
-} as const
 
-const BUTTON_BEHAVIOR_MAP = {
-  animated: motion.button,
-  default: 'button',
-} as const
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps & MotionProps>(
-  (
-    { className, variant, size, animated = false, asChild = false, ...props },
-    ref,
-  ) => {
-    const ButtonBehavior = animated
-      ? BUTTON_BEHAVIOR_MAP.animated
-      : BUTTON_BEHAVIOR_MAP.default
-    const Comp = asChild ? Slot : ButtonBehavior
-    const motionProps = animated ? MOTION_ANIMATION : {}
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button'
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        {...motionProps}
         {...props}
       />
     )

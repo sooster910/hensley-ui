@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import { SimpleDialogProvider } from './SimpleDialog'
 import { useSimpleDialog } from './useSimpleDialog'
-import { Button } from '@components/button'
+import { Button } from '@hensley-ui/react-button'
 import { SimpleDialogType } from './SimpleDialog.types'
 
 describe('SimpleDialogProvider', () => {

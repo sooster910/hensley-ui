@@ -2,15 +2,31 @@
   "private": true,
   "packageManager": "pnpm@8.15.4",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/ui/*"
   ],
   "scripts": {
     "dev": "pnpm --parallel -r run dev",
-    "release": "changeset publish",
+    "build": "turbo run build --filter=!playground",
+    "test": "turbo run test --filter=!playground",
+    "lint": "turbo run lint --filter=!playground",
+    "type-check": "turbo run type-check --filter=!playground",
+    "clean": "turbo run clean",
+    "create-package": "node packages/ui/scripts/create-package.js",
+    "deploy:utils": "cd packages/ui/utils && pnpm build && npm publish",
+    "deploy:button": "cd packages/ui/react-button && pnpm build && npm publish",
+    "deploy:all": "node scripts/deploy-packages.js",
+    "ci:publish": "changeset publish",
     "version-packages": "changeset version",
+    "build-storybook": "pnpm turbo run build-storybook",
     "ui:storybook": "pnpm --filter @hensley-ui/ui storybook"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.12"
+    "@changesets/cli": "^2.27.12",
+    "@types/node": "^22.10.10",
+    "turbo": "^2.5.4",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.5",
+    "vite-plugin-dts": "^4.5.0"
   }
 }
