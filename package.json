@@ -18,6 +18,7 @@
     "deploy:all": "node scripts/deploy-packages.js",
     "ci:publish": "changeset publish",
     "version-packages": "changeset version",
+    "build-storybook": "pnpm turbo run build-storybook",
     "ui:storybook": "pnpm --filter @hensley-ui/ui storybook"
   },
   "devDependencies": {
