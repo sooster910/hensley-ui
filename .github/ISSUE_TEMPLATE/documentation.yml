@@ -1,0 +1,35 @@
+name: 📚 Documentation
+description: 문서 개선이나 추가가 필요한 부분을 알려주세요.
+title: "[Docs]: "
+labels: ["documentation", "enhancement"]
+body:
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: 📝 문서 유형
+      description: 어떤 종류의 문서인가요?
+      options:
+        - README 개선
+        - API 문서 추가/수정
+        - 사용 가이드 작성
+        - 예제 코드 추가
+        - Storybook 문서 개선
+        - 기타
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-state
+    attributes:
+      label: 📄 현재 상태
+      description: 현재 문서의 어떤 부분이 부족하거나 개선이 필요한가요?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-content
+    attributes:
+      label: ✏️ 제안하는 내용
+      description: 어떤 내용을 추가하거나 수정하면 좋을까요?
+    validations:
+      required: true

@@ -1,0 +1,85 @@
+name: 🐛 Bug Report
+description: 버그를 발견하셨나요? 상세한 정보를 제공해주세요.
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        버그 신고해주셔서 감사합니다! 🐛
+        정확한 재현과 빠른 수정을 위해 아래 정보를 모두 채워주세요.
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: 🔍 버그 설명
+      description: 어떤 버그가 발생했는지 명확하게 설명해주세요.
+      placeholder: 예) Button 컴포넌트에서 onClick 이벤트가 두 번 호출됩니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 🔄 재현 방법
+      description: 버그를 재현할 수 있는 단계별 방법을 설명해주세요.
+      placeholder: |
+        1. '...' 페이지로 이동
+        2. '...' 버튼을 클릭
+        3. '...' 입력
+        4. 오류 발생
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: ✅ 예상 결과
+      description: 어떤 결과를 기대했는지 설명해주세요.
+      placeholder: 버튼을 클릭하면 한 번만 이벤트가 호출되어야 합니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: ❌ 실제 결과
+      description: 실제로 어떤 일이 발생했는지 설명해주세요.
+      placeholder: 버튼을 클릭하면 이벤트가 두 번 호출됩니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 🌍 환경 정보
+      description: 버그가 발생한 환경을 알려주세요.
+      placeholder: |
+        - OS: macOS 13.0
+        - Browser: Chrome 118.0
+        - Node.js: 18.17.0
+        - Package Version: @hensley-ui/react-button@1.0.0
+        - React Version: 18.2.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: 📎 추가 정보
+      description: 스크린샷, 에러 로그, 또는 관련된 추가 정보가 있다면 첨부해주세요.
+      placeholder: 에러 메시지, 스크린샷, 관련 코드 등...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: ✅ 체크리스트
+      description: 이슈 제출 전 확인해주세요.
+      options:
+        - label: 기존 이슈를 검색했지만 중복된 내용이 없습니다.
+          required: true
+        - label: 최신 버전에서 발생하는 문제입니다.
+          required: true
+        - label: 재현 가능한 최소한의 예제를 제공했습니다.
+          required: false

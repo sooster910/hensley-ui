@@ -1,0 +1,72 @@
+name: ✨ Feature Request
+description: 새로운 기능이나 개선사항을 제안해주세요.
+title: "[Feature]: "
+labels: ["enhancement", "needs-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        새로운 아이디어를 제안해주셔서 감사합니다! ✨
+        구체적인 정보를 제공해주시면 더 좋은 기능을 만들 수 있습니다.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: 🚀 기능 설명
+      description: 어떤 기능을 원하시나요?
+      placeholder: 예) 다크 모드를 지원하는 Theme Provider 컴포넌트가 필요합니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 🤔 해결하고자 하는 문제
+      description: 이 기능이 어떤 문제를 해결하나요?
+      placeholder: 현재 사용자들이 다크 모드를 적용하기 어려워합니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 💡 제안하는 해결책
+      description: 어떻게 구현되었으면 좋겠나요?
+      placeholder: |
+        ```jsx
+        <ThemeProvider theme="dark">
+          <Button>Dark Button</Button>
+        </ThemeProvider>
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🔄 대안
+      description: 다른 방법으로 해결할 수 있는 방안이 있나요?
+      placeholder: CSS 변수를 사용한 수동 테마 적용...
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 📊 우선순위
+      description: 이 기능의 중요도는?
+      options:
+        - 낮음 (Nice to have)
+        - 보통 (Would be helpful)
+        - 높음 (Important)
+        - 매우 높음 (Critical)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: 🤝 기여 의향
+      description: 이 기능 구현에 참여하실 의향이 있나요?
+      options:
+        - label: 이 기능을 직접 구현하고 PR을 제출할 수 있습니다.
+        - label: 테스트와 피드백을 제공할 수 있습니다.
+        - label: 문서화에 도움을 줄 수 있습니다.
