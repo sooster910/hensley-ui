@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g pnpm
-          pnpm install
+          pnpm install --frozen-lockfile
 
       - name: Lint
         run: pnpm lint
@@ -64,7 +64,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g pnpm
-          pnpm install
+          pnpm install --frozen-lockfile
 
       - name: Build Storybook
         run: pnpm build-storybook
@@ -111,7 +111,7 @@ jobs:
           version: 8
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
