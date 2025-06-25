@@ -11,11 +11,7 @@ function getAbsolutePath(value: string): string {
 }
 
 const config: StorybookConfig = {
-  stories: [
-    '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../react-button/src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-  ],
+  stories: ['../**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   docs: {
     autodocs: 'tag',
   },
