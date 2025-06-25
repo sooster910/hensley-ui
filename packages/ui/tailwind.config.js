@@ -5,6 +5,7 @@ export default {
     './index.html',
     './src/**/*.{ts,tsx,js,jsx}',
     './react-button/src/**/*.{ts,tsx,js,jsx}',
+    './react-heading/src/**/*.{ts,tsx,js,jsx}',
     './base-ui/**/*.{ts,tsx,js,jsx}',
   ],
   theme: {
