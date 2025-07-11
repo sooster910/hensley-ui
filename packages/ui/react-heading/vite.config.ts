@@ -7,7 +7,6 @@ export default defineConfig({
     outDir: 'dist',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'HensleyUI-React-Button',
       formats: ['es', 'cjs'],
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
     },
@@ -26,7 +25,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
-      '@hensley-ui/react-button': resolve(__dirname, './src/index.ts'),
     },
   },
   plugins: [
