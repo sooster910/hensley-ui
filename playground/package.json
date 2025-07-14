@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hensley-ui/react-heading": "workspace:*",
     "@hensley-ui/react-button": "workspace:*",
     "@tailwindcss/vite": "^4.0.3",
     "react": "^19.1.0",
