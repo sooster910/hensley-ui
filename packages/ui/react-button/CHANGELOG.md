@@ -1,5 +1,11 @@
 # @hensley-ui/react-button
 
+## 0.1.1
+
+### Patch Changes
+
+- abe8c64: Fixed an issue with missing bundled files
+
 ## 0.1.0
 
 ### Minor Changes
