@@ -1,5 +1,12 @@
 # @hensley-ui/ui
 
+## 0.3.5
+
+### Patch Changes
+
+- Updated dependencies [abe8c64]
+  - @hensley-ui/react-button@0.1.1
+
 ## 0.3.4
 
 ### Patch Changes
