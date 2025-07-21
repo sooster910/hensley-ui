@@ -33,8 +33,13 @@ jobs:
           npm install -g pnpm
           pnpm install --frozen-lockfile
 
-      - name: Lint
-        run: pnpm lint
+      - name: Run Turbo Lint
+        if: github.event_name == 'pull_request'
+        run: turbo run lint --filter="[HEAD^1]..."
+
+      - name: Run Turbo Lint(Push to main)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: turbo run lint --filter="[origin/main]..."
 
       - name: Type check
         run: pnpm type-check
