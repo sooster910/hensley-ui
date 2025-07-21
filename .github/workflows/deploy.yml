@@ -33,6 +33,14 @@ jobs:
           npm install -g pnpm
           pnpm install --frozen-lockfile
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install Turborepo CLI
+        run: pnpm install -g turbo
+
       - name: Run Turbo Lint
         if: github.event_name == 'pull_request'
         run: turbo run lint --filter="[HEAD^1]..."
