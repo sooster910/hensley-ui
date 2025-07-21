@@ -12,6 +12,7 @@ interface ButtonProps extends BaseButtonProps {
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, fullWidth = false, ...props }, ref) => {
+    // console.log('Button rendered'); // 이 줄을 추가해 보세요.
     return (
       <BaseButton
         className={cn(className, fullWidth && 'w-full')}
