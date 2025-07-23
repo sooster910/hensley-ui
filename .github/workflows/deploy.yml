@@ -55,9 +55,9 @@ jobs:
       - name: Run Turbo Lint
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
-            turbo run lint --filter="[origin/${{ github.event.pull_request.base.ref }}]" --dry-run
+            turbo run lint --filter="[origin/${{ github.event.pull_request.base.ref }}]"
           else
-            turbo run lint --filter="[origin/main]..." --dry-run
+            turbo run lint --filter="[origin/main]..."
           fi
 
       - name: Type check
