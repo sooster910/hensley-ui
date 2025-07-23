@@ -265,9 +265,6 @@ importers:
 
   playground:
     dependencies:
-      '@hensley-ui/react-button':
-        specifier: workspace:*
-        version: link:../packages/ui/react-button
       '@hensley-ui/react-heading':
         specifier: workspace:*
         version: link:../packages/ui/react-heading

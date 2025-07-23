@@ -1,16 +1,12 @@
-import { createElement, useState } from "react";
+import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-// import "@hensley-ui/ui/styles.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const Comp = createElement("h1", null, "hihi");
-  const [fn, setFn] = useState<() => void | null>();
+  const [, setFn] = useState<() => void | null>();
   const handleClick = () => {
     setFn(() => () => console.log("hi"));
   };
-  console.log("comp", Comp);
 
   return (
     <>
