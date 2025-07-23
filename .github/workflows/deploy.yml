@@ -23,6 +23,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+        # Turborepo 필터링을 위한 베이스 브랜치 가져오기
+      - name: Fetch base branch for Turborepo filter
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            # PR의 베이스 브랜치(예: main)를 가져옵니다.
+            git fetch origin ${{ github.event.pull_request.base.ref }}
+          else
+            # push 이벤트의 경우, 'main' 브랜치 자체를 가져옵니다.
+            git fetch origin main || true # 'main'이 없는 경우 오류 방지
+          fi
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
