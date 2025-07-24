@@ -12,6 +12,7 @@ interface ButtonProps extends BaseButtonProps {
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, fullWidth = false, ...props }, ref) => {
+    console.log('Button', className, variant, size, fullWidth, props)
     return (
       <BaseButton
         className={cn(className, fullWidth && 'w-full')}
