@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": "vite build",
-    "build:analyze": "vite build && node analyze.js",
+    "build:analyze": "ANALYZE=true vite build && node analyze.js",
     "dev": "vite build --watch",
     "clean": "rimraf .turbo node_modules dist",
     "test": "vitest run --passWithNoTests",
