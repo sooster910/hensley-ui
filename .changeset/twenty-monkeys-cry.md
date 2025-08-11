@@ -8,4 +8,4 @@ feat: optimize bundle size and improve documentation
 - Add bundle analysis tools with rollup-plugin-visualizer
 - Update README.md with comprehensive English documentation
 - Add peer dependencies for better dependency management
-- Include bundle size analysis script for monitoring
+- Include bundle size analysis script for **monitoring**
