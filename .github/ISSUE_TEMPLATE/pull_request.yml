@@ -1,0 +1,126 @@
+name: 🔄 Pull Request
+description: PR과 관련된 이슈나 논의사항을 등록해주세요.
+title: "[PR]: "
+labels: ["pull-request", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        PR과 관련된 이슈를 등록해주셔서 감사합니다! 🔄
+        구체적인 정보를 제공해주시면 더 효율적인 리뷰와 논의가 가능합니다.
+
+  - type: textarea
+    id: pr-description
+    attributes:
+      label: 📝 PR 설명
+      description: 어떤 변경사항을 포함한 PR인가요?
+      placeholder: 예) Button 컴포넌트에 새로운 variant를 추가했습니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: changes
+    attributes:
+      label: 🔧 주요 변경사항
+      description: 구체적으로 어떤 파일들이 변경되었나요?
+      placeholder: |
+        - packages/ui/src/components/Button.tsx: 새로운 variant 추가
+        - packages/ui/src/components/Button.test.tsx: 테스트 케이스 추가
+        - packages/ui/README.md: 문서 업데이트
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: 💭 변경 동기
+      description: 왜 이 변경이 필요한가요?
+      placeholder: 사용자들이 더 다양한 스타일의 버튼을 요청했습니다.
+    validations:
+      required: true
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: 🧪 테스트 방법
+      description: 어떻게 테스트했나요?
+      placeholder: |
+        - [ ] 단위 테스트 추가
+        - [ ] Storybook에서 시각적 테스트
+        - [ ] 실제 프로젝트에서 통합 테스트
+    validations:
+      required: true
+
+  - type: textarea
+    id: breaking-changes
+    attributes:
+      label: ⚠️ Breaking Changes
+      description: 기존 코드와 호환성 문제가 있나요?
+      placeholder: 없음 (또는 구체적인 변경사항 설명)
+
+  - type: input
+    id: issue-number
+    attributes:
+      label: 🔢 이슈 번호
+      description: 이 PR과 관련된 이슈 번호를 입력해주세요
+      placeholder: 예) #123, #456
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-issues
+    attributes:
+      label: 🔗 관련 이슈
+      description: 이 PR과 관련된 이슈가 있나요?
+      placeholder: Closes #123, Fixes #456
+
+  - type: dropdown
+    id: pr-type
+    attributes:
+      label: 📋 PR 유형
+      description: 어떤 종류의 변경인가요?
+      options:
+        - 🐛 Bug Fix
+        - ✨ New Feature
+        - 📚 Documentation
+        - 🎨 Style/UI
+        - ♻️ Refactor
+        - ⚡ Performance
+        - 🧪 Test
+        - 🔧 Configuration
+        - 📦 Dependencies
+        - 🚀 CI/CD
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 📊 우선순위
+      description: 이 PR의 중요도는?
+      options:
+        - 낮음 (Nice to have)
+        - 보통 (Would be helpful)
+        - 높음 (Important)
+        - 매우 높음 (Critical)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: ✅ 체크리스트
+      description: 다음 사항들을 확인해주세요
+      options:
+        - label: 코드가 프로젝트의 코딩 스타일을 따릅니다.
+        - label: 자체적으로 테스트를 수행했습니다.
+        - label: 새로운 기능에 대한 문서를 추가/수정했습니다.
+        - label: 변경사항이 기존 기능을 깨뜨리지 않습니다.
+        - label: 관련된 모든 이슈를 참조했습니다.
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: 📝 추가 노트
+      description: 리뷰어가 알아야 할 추가 정보가 있나요?
+      placeholder: 특별한 고려사항이나 구현 세부사항...
