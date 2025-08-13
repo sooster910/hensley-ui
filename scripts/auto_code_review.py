@@ -237,7 +237,6 @@ def main():
     parser.add_argument('--repo', required=True, help='GitHub 저장소 이름')
     parser.add_argument('--pr-number', required=True, type=int, help='PR 번호')
     parser.add_argument('--pr-url', required=True, help='PR URL')
-    parser.add_argument('--no-save', action='store_true', help='결과를 파일로 저장하지 않음')
     
     args = parser.parse_args()
     
@@ -248,8 +247,7 @@ def main():
         args.owner, 
         args.repo, 
         args.pr_number, 
-        args.pr_url,
-        save_result=not args.no_save
+        args.pr_url
     ))
     
     if success:
