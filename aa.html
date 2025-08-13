@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hensley - Frontend Dev</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Pixelify Sans", monospace;
+        font-size: 14px;
+        background: linear-gradient(45deg, #008080 0%, #20b2aa 100%);
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .desktop {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        background: linear-gradient(45deg, #008080 0%, #20b2aa 100%);
+      }
+
+      /* Desktop Icons */
+      .desktop-icon {
+        position: absolute;
+        width: 64px;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .desktop-icon img {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 4px;
+      }
+
+      .desktop-icon span {
+        display: block;
+        font-size: 11px;
+        text-shadow: 1px 1px 0px #000;
+        background: rgba(0, 0, 0, 0.1);
+        padding: 2px 4px;
+        border-radius: 2px;
+      }
+
+      .icon-folder {
+        top: 20px;
+        left: 20px;
+      }
+      .icon-projects {
+        top: 20px;
+        left: 100px;
+      }
+      .icon-contact {
+        top: 20px;
+        left: 180px;
+      }
+      .icon-trash {
+        top: 100px;
+        left: 20px;
+      }
+
+      /* Main Window */
+      .window {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 480px;
+        background: #c0c0c0;
+        border: 2px outset #c0c0c0;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .title-bar {
+        background: linear-gradient(90deg, #0000ff 0%, #000080 100%);
+        color: white;
+        padding: 4px 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      .title-text {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .window-controls {
+        display: flex;
+        gap: 2px;
+      }
+
+      .control-btn {
+        width: 16px;
+        height: 14px;
+        background: #c0c0c0;
+        border: 1px outset #c0c0c0;
+        font-size: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: black;
+      }
+
+      .control-btn:hover {
+        background: #e0e0e0;
+      }
+
+      .window-content {
+        padding: 16px;
+        background: #c0c0c0;
+        min-height: 300px;
+      }
+
+      .profile-section {
+        margin-bottom: 16px;
+        padding: 8px;
+        background: white;
+        border: 1px inset #c0c0c0;
+      }
+
+      .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .avatar {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        border: 2px inset #c0c0c0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .profile-info h1 {
+        font-size: 18px;
+        color: #000080;
+        margin-bottom: 4px;
+      }
+
+      .job-title {
+        color: #008000;
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      .tech-stack {
+        display: flex;
+        gap: 8px;
+        margin: 8px 0;
+      }
+
+      .tech-badge {
+        background: #808080;
+        color: white;
+        padding: 2px 6px;
+        border: 1px outset #808080;
+        font-size: 10px;
+        border-radius: 2px;
+      }
+
+      .motto {
+        font-style: italic;
+        color: #800080;
+        margin-top: 8px;
+        padding: 8px;
+        background: #ffffcc;
+        border: 1px inset #c0c0c0;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .btn-95 {
+        padding: 4px 12px;
+        background: #c0c0c0;
+        border: 2px outset #c0c0c0;
+        font-family: inherit;
+        font-size: 11px;
+        cursor: pointer;
+      }
+
+      .btn-95:hover {
+        background: #e0e0e0;
+      }
+
+      .btn-95:active {
+        border: 2px inset #c0c0c0;
+      }
+
+      /* Taskbar */
+      .taskbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 28px;
+        background: #c0c0c0;
+        border-top: 1px solid #808080;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4px;
+      }
+
+      .start-button {
+        background: #c0c0c0;
+        border: 2px outset #c0c0c0;
+        padding: 2px 8px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .start-button:hover {
+        background: #e0e0e0;
+      }
+
+      .start-button:active {
+        border: 2px inset #c0c0c0;
+      }
+
+      .window-list {
+        flex: 1;
+        margin: 0 8px;
+        display: flex;
+        gap: 2px;
+      }
+
+      .window-item {
+        background: #808080;
+        color: white;
+        padding: 2px 8px;
+        border: 1px inset #c0c0c0;
+        font-size: 10px;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .system-tray {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        border: 1px inset #c0c0c0;
+        padding: 2px 6px;
+        background: #c0c0c0;
+      }
+
+      .time {
+        font-size: 10px;
+      }
+
+      /* Animations */
+      .window {
+        animation: windowOpen 0.3s ease-out;
+      }
+
+      @keyframes windowOpen {
+        from {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .desktop-icon:hover {
+        animation: iconHover 0.2s ease;
+      }
+
+      @keyframes iconHover {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="desktop">
+      <!-- Desktop Icons -->
+      <div class="desktop-icon icon-folder">
+        <div style="font-size: 32px">📁</div>
+        <span>My Computer</span>
+      </div>
+      <div class="desktop-icon icon-projects">
+        <div style="font-size: 32px">💻</div>
+        <span>Projects</span>
+      </div>
+      <div class="desktop-icon icon-contact">
+        <div style="font-size: 32px">📧</div>
+        <span>Contact</span>
+      </div>
+      <div class="desktop-icon icon-trash">
+        <div style="font-size: 32px">🗑️</div>
+        <span>Recycle Bin</span>
+      </div>
+
+      <!-- Main Profile Window -->
+      <div class="window">
+        <div class="title-bar">
+          <div class="title-text">
+            <span>📋</span>
+            <span>About Hensley - Profile.exe</span>
+          </div>
+          <div class="window-controls">
+            <div class="control-btn">_</div>
+            <div class="control-btn">□</div>
+            <div class="control-btn">✕</div>
+          </div>
+        </div>
+        <div class="window-content">
+          <div class="profile-section">
+            <div class="profile-header">
+              <div class="profile-info">
+                <h1>Hensley</h1>
+                <div class="job-title">Frontend Developer / 💻</div>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 12px">
+              <strong>🛠️ Tech Stack:</strong>
+              <div class="tech-stack">
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">Node.js</span>
+              </div>
+            </div>
+
+            <div class="motto">
+              📦 Building npm packages | ☕️ Coffee lover | 🏃‍♂️ daily jogger
+            </div>
+
+            <!-- <div class="buttons">
+              <button class="btn-95">📂 View Projects</button>
+              <button class="btn-95">📧 Contact Me</button>
+              <button class="btn-95">📄 Resume</button>
+            </div> -->
+          </div>
+
+          <div
+            style="
+              margin-top: 16px;
+              padding: 8px;
+              background: #f0f0f0;
+              border: 1px inset #c0c0c0;
+              font-size: 12px;
+            "
+          >
+            <strong>System Info:</strong><br />
+            💻 OS: Windows 95 Retro Edition<br />
+            🎮 Status: Ready to code!<br />
+            📈 GitHub: github.com/sooster910<br />
+            🌐 Location: Seoul, South Korea
+          </div>
+        </div>
+      </div>
+
+      <!-- Taskbar -->
+      <div class="taskbar">
+        <div class="start-button">
+          <span style="font-size: 14px">🏁</span>
+          <span>Start</span>
+        </div>
+        <div class="window-list">
+          <div class="window-item">📋 About Hensley</div>
+        </div>
+        <div class="system-tray">
+          <span style="font-size: 10px">🔊</span>
+          <span class="time" id="current-time">2:30 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Update time
+      function updateTime() {
+        const now = new Date();
+        const time = now.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        document.getElementById("current-time").textContent = time;
+      }
+
+      updateTime();
+      setInterval(updateTime, 1000);
+
+      // Add click effects to buttons
+      document.querySelectorAll(".btn-95, .start-button").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          // Simple alert for demo
+          if (this.textContent.includes("Projects")) {
+            alert("Opening Projects folder... 💻");
+          } else if (this.textContent.includes("Contact")) {
+            alert("📧 Email: hensley@retro90s.dev");
+          } else if (this.textContent.includes("Resume")) {
+            alert("📄 Downloading resume.pdf...");
+          } else if (this.textContent.includes("Start")) {
+            alert("🏁 Start Menu clicked!");
+          }
+        });
+      });
+
+      // Desktop icon interactions
+      document.querySelectorAll(".desktop-icon").forEach((icon) => {
+        icon.addEventListener("dblclick", function () {
+          const iconName = this.querySelector("span").textContent;
+          alert(`Opening ${iconName}... 🖱️`);
+        });
+      });
+    </script>
+  </body>
+</html>
