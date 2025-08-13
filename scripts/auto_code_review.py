@@ -193,6 +193,9 @@ PR #{pr_number}의 변경사항이 너무 커서 자동 코드리뷰를 건너�
                 
                 return True
                 
+        except subprocess.CalledProcessError as e:
+            print(f"GitHub CLI 오류: {e}")
+            print("GitHub CLI가 설치되어 있고 로그인되어 있는지 확인하세요.")
         except Exception as e:
             print(f"PR 정보 가져오기 실패: {e}")
         
@@ -219,10 +222,11 @@ PR #{pr_number}의 변경사항이 너무 커서 자동 코드리뷰를 건너�
         print("코드리뷰 실행 중...")
         
         # 스트림 처리
-        result = await process_stream(agent.astream([HumanMessage(content=human_message)]))
+        result = await process_stream(agent.astream({"messages": [HumanMessage(content=human_message)]}))
         
         # 결과 저장
-        await save_review_result(owner, repo, pr_number, result)
+        if result:
+            save_review_result(owner, repo, pr_number, str(result))
         
         print("코드리뷰 완료!")
         return True
