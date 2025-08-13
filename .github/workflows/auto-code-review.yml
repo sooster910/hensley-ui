@@ -25,7 +25,7 @@ jobs:
 
       - name: Run code review
         env:
-          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+          GITHUB_PAT: ${{ secrets.AUTO_CODE_REVIEW_TOKEN }}
           # SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           # SLACK_TEAM_ID: ${{ secrets.SLACK_TEAM_ID }}
           # SLACK_CHANNEL_IDS: ${{ secrets.SLACK_CHANNEL_IDS }}
