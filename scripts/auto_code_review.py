@@ -14,9 +14,36 @@ from dotenv import load_dotenv
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import HumanMessage
+import tiktoken  # 토큰 카운팅을 위해 추가
 
 # 환경변수 로드
 load_dotenv()
+
+def count_tokens(text, model="gpt-4"):
+    """텍스트의 토큰 수를 계산합니다."""
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+        return len(encoding.encode(text))
+    except:
+        # 대략적인 추정: 1 토큰 ≈ 4 문자
+        return len(text) // 4
+
+def estimate_pr_tokens(pr_info):
+    """PR 정보의 대략적인 토큰 수를 추정합니다."""
+    estimated_tokens = 0
+    
+    # 기본 PR 정보
+    if pr_info.get('title'):
+        estimated_tokens += count_tokens(pr_info['title'])
+    if pr_info.get('body'):
+        estimated_tokens += count_tokens(pr_info['body'])
+    
+    # 변경된 파일들 (대략적 추정)
+    # 각 파일당 평균 1000 토큰으로 가정
+    changed_files = pr_info.get('changed_files', 0)
+    estimated_tokens += changed_files * 1000
+    
+    return estimated_tokens
 
 async def setup_mcp_client():
     """MCP 클라이언트 설정"""
@@ -119,63 +146,87 @@ def save_review_result(owner, repo, pr_number, review_content, output_dir="revie
         print(f"❌ 리뷰 결과 저장 중 오류: {e}")
         return None
 
-async def run_code_review(owner, repo, pr_number, pr_url, save_result=True):
+async def run_code_review(owner, repo, pr_number, pr_url):
     """코드리뷰 실행"""
     try:
+        print(f"코드리뷰 시작: {owner}/{repo} PR #{pr_number}")
+        
+        # PR 정보 가져오기 (간단한 버전)
+        try:
+            import subprocess
+            result = subprocess.run(
+                ["gh", "pr", "view", str(pr_number), "--json", "title,body,changedFiles"],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            pr_info = json.loads(result.stdout)
+            
+            # 토큰 수 추정
+            estimated_tokens = estimate_pr_tokens(pr_info)
+            print(f"예상 토큰 수: {estimated_tokens}")
+            
+            # 토큰 제한 체크 (30,000 토큰)
+            if estimated_tokens > 25000:  # 여유분을 두고 체크
+                print(f"⚠️ 토큰 제한 초과 예상 ({estimated_tokens} > 25000)")
+                print("🚫 코드리뷰를 건너뜁니다.")
+                
+                # 간단한 메시지만 작성
+                simple_message = f"""## 🤖 AI 자동 코드리뷰
+
+PR #{pr_number}의 변경사항이 너무 커서 자동 코드리뷰를 건너뜁니다.
+
+**이유**: 토큰 제한 초과 (예상 {estimated_tokens} 토큰)
+
+**권장사항**: 
+- 수동으로 코드리뷰를 진행해주세요
+- 또는 PR을 더 작은 단위로 나누어주세요
+
+---
+*AI 자동 코드리뷰 시스템*"""
+                
+                # PR에 코멘트 작성
+                subprocess.run([
+                    "gh", "pr", "comment", str(pr_number), 
+                    "--body", simple_message
+                ], check=True)
+                
+                return True
+                
+        except Exception as e:
+            print(f"PR 정보 가져오기 실패: {e}")
+        
         # MCP 클라이언트 설정
         mcp_client = await setup_mcp_client()
         
         # 도구 목록 가져오기
-        tool_list = await mcp_client.get_tools()
+        tools = await mcp_client.get_tools()
         
         # 에이전트 생성
         agent = create_react_agent(
-            model="openai:gpt-4.1",
-            tools=tool_list,
+            model="openai:gpt-4o-mini",  # 더 가벼운 모델 사용
+            tools=tools,
             prompt="Use the tools provided to you to answer the user's question"
         )
         
-        # 코드리뷰 요청 메시지 생성 (Slack 관련 부분 제거)
-        human_message = f"""깃헙의 Pull Request를 확인하고 코드 리뷰를 작성해주세요. 
-PR의 코드를 리뷰한 후에, 아래 항목을 확인해주세요;
-1. 코드가 개선되었는지
-2. 예측하지 못한 side effect가 있는지
-3. 보안상 문제가 될 수 있는 부분이 없는지
-
-위 내용을 확인해서 PR에 코멘트로 남겨주세요.
-
-PR URL: {pr_url}"""
+        # 코드리뷰 요청 메시지 생성 (간소화)
+        human_message = f"""PR #{pr_number}의 코드를 간단히 리뷰해주세요.
         
-        # 스트림 실행
-        stream_generator = agent.astream(
-            {"messages": [HumanMessage(human_message)]}, 
-            stream_mode="updates"
-        )
+        주요 변경사항만 확인하고 간결한 코멘트를 작성해주세요.
         
-        # 결과 처리
-        all_chunks = await process_stream(stream_generator)
+        PR URL: {pr_url}"""
         
-        if all_chunks:
-            final_result = all_chunks[-1]
-            print("\nFinal result:", final_result)
-            
-            # 리뷰 내용 추출
-            review_content = None
-            if 'agent' in final_result and 'messages' in final_result['agent']:
-                for message in final_result['agent']['messages']:
-                    if hasattr(message, 'content') and message.content:
-                        review_content = message.content
-                        break
-            
-            # 결과 저장
-            if save_result and review_content:
-                save_review_result(owner, repo, pr_number, review_content)
-            
-            return True
-        else:
-            print("No results from code review")
-            return False
-            
+        print("코드리뷰 실행 중...")
+        
+        # 스트림 처리
+        result = await process_stream(agent.astream([HumanMessage(content=human_message)]))
+        
+        # 결과 저장
+        await save_review_result(owner, repo, pr_number, result)
+        
+        print("코드리뷰 완료!")
+        return True
+        
     except Exception as e:
         print(f"코드리뷰 실행 중 오류 발생: {e}")
         return False
