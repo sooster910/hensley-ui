@@ -33,3 +33,7 @@ chromatic.log
 chromatic-build-*.xml
 chromatic-diagnostics.json
 .turbo/
+# Environment variables
+.env
+.env.local
+.env.*.local

@@ -1,0 +1,38 @@
+name: Auto Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main, develop]
+
+jobs:
+  code-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run code review
+        env:
+          GITHUB_PAT: ${{ secrets.AUTO_CODE_REVIEW_TOKEN }}
+          # SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          # SLACK_TEAM_ID: ${{ secrets.SLACK_TEAM_ID }}
+          # SLACK_CHANNEL_IDS: ${{ secrets.SLACK_CHANNEL_IDS }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python scripts/auto_code_review.py \
+            --owner ${{ github.repository_owner }} \
+            --repo ${{ github.event.repository.name }} \
+            --pr-number ${{ github.event.pull_request.number }} \
+            --pr-url ${{ github.event.pull_request.html_url }}
