@@ -1,6 +1,6 @@
 {
   "name": "@hensley-ui/react-heading",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A flexible and accessible heading component built with React and Tailwind CSS",
   "keywords": [
     "react",
