@@ -7,8 +7,8 @@ export default defineConfig({
     outDir: 'dist',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
+      formats: ['es'],
+      fileName: () => 'index.mjs',
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],

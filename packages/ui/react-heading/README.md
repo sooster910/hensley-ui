@@ -1,11 +1,11 @@
-# @hensley-ui/heading
+# @hensley-ui/react-heading
 
 A flexible and accessible heading component built with React and Tailwind CSS. This component provides semantic heading elements (h1-h6) with consistent styling and typography.
 
 ## Installation
 
 ```bash
-npm install @hensley-ui/heading
+npm install @hensley-ui/react-heading
 ```
 
 **Note:** This package depends on `@hensley-ui/utils`. It will be installed automatically.
@@ -13,7 +13,7 @@ npm install @hensley-ui/heading
 ## Usage
 
 ```tsx
-import { Heading } from '@hensley-ui/heading'
+import { Heading } from '@hensley-ui/react-heading'
 
 function App() {
   return (
@@ -55,7 +55,7 @@ Each heading level comes with predefined Tailwind CSS classes:
 ### Basic Usage
 
 ```tsx
-import { Heading } from '@hensley-ui/heading'
+import { Heading } from '@hensley-ui/react-heading'
 
 function Article() {
   return (
@@ -74,7 +74,7 @@ function Article() {
 ### Custom Styling
 
 ```tsx
-import { Heading } from '@hensley-ui/heading'
+import { Heading } from '@hensley-ui/react-heading'
 
 function CustomHeading() {
   return (
@@ -93,7 +93,7 @@ function CustomHeading() {
 The Heading component is polymorphic, meaning you can render it as any heading element:
 
 ```tsx
-import { Heading } from '@hensley-ui/heading'
+import { Heading } from '@hensley-ui/react-heading'
 
 function DynamicHeading({ level, children }) {
   return (
