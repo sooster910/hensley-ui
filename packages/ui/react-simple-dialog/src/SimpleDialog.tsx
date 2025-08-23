@@ -10,7 +10,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from '@/components/ui/dialog'
+} from '../../base-ui/ui/dialog'
 import { SimpleDialogType } from './SimpleDialog.types'
 
 export const SimpleDialogProvider = ({
