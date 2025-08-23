@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from '@/components/ui/dialog'
+} from '../../base-ui/ui/dialog'
 import { Button } from '@hensley-ui/react-button'
 
 const meta: Meta<typeof Dialog> = {

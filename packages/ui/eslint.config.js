@@ -10,6 +10,7 @@ export default [
       'dist/**/*',
       'react-button/dist/**/*',
       'react-heading/dist/**/*',
+      'react-simple-dialog/dist/**/*',
       'node_modules/**/*',
       'tailwind.config.js',
       '.storybook/**/*',
